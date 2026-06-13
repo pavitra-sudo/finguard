@@ -11,8 +11,8 @@ fi
 BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 echo "=== System Update and Dependencies ==="
-apt-get update && apt-get upgrade -y
-apt-get install -y podman podman-compose wireguard qrencode jq curl nftables fail2ban openresolv linux-headers-generic
+dnf upgrade -y
+dnf install -y podman podman-compose wireguard-tools qrencode jq curl nftables fail2ban
 
 echo "=== Applying Sysctl Settings ==="
 cp "$BASE_DIR/configs/sysctl/99-privacy-server.conf" /etc/sysctl.d/
@@ -29,6 +29,7 @@ systemctl enable --now fail2ban
 systemctl restart fail2ban
 
 echo "=== Configuring nftables ==="
+systemctl disable --now firewalld || true
 cp "$BASE_DIR/configs/nftables/nftables.conf" /etc/nftables.conf
 systemctl enable --now nftables
 nft -f /etc/nftables.conf

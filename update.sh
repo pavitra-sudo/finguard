@@ -11,9 +11,8 @@ fi
 BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 echo "=== Updating Host OS Packages ==="
-apt-get update
-apt-get upgrade -y
-apt-get autoremove -y
+dnf upgrade -y
+dnf autoremove -y
 
 echo "=== Updating Podman Containers ==="
 cd "$BASE_DIR/podman"

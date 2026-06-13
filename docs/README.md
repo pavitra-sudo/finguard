@@ -1,6 +1,6 @@
 # Privacy Server Platform
 
-A self-hosted, privacy-focused personal server platform designed for Raspberry Pi 3B+ running Raspberry Pi OS Lite (64-bit). This repository is designed to be cloned and run "out of the box".
+A self-hosted, privacy-focused personal server platform designed for Raspberry Pi 3B+ running Fedora. This repository is designed to be cloned and run "out of the box".
 
 ## Architecture Overview
 
