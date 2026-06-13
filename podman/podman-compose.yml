@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  unbound:
+    image: docker.io/mvance/unbound:latest
+    container_name: unbound
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - ../configs/unbound:/opt/unbound/etc/unbound:Z
+    healthcheck:
+      test: ["CMD", "dig", "-p", "5335", "@127.0.0.1", "cloudflare.com"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    mem_limit: 128m
+    logging:
+      driver: journald
+
+  adguardhome:
+    image: docker.io/adguard/adguardhome:latest
+    container_name: adguardhome
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - ../configs/adguard/work:/opt/adguardhome/work:Z
+      - ../configs/adguard/AdGuardHome.yaml:/opt/adguardhome/conf/AdGuardHome.yaml:Z
+    depends_on:
+      - unbound
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:3000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    mem_limit: 256m
+    logging:
+      driver: journald

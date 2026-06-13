@@ -1,0 +1,66 @@
+bind_host: 0.0.0.0
+bind_port: 3000
+auth_name: admin
+auth_pass: $2y$10$wE0p93iS5wO.m5k12K6/e.02w.aX9r5r13w5u788/q8083A209uN.
+language: en
+dns:
+  bind_hosts:
+  - 0.0.0.0
+  port: 53
+  statistics_interval: 1
+  querylog_enabled: true
+  querylog_file_enabled: true
+  querylog_interval: 90
+  querylog_size_memory: 1000
+  anonymize_client_ip: false
+  protection_enabled: true
+  blocking_mode: default
+  blocking_ipv4: ""
+  blocking_ipv6: ""
+  blocked_response_ttl: 10
+  parental_block_host: family-block.dns.adguard.com
+  safebrowsing_block_host: standard-block.dns.adguard.com
+  rate_limit: 20
+  rate_limit_whitelist: []
+  edns_cs_enabled: false
+  edns_cs_use_custom: false
+  edns_cs_custom_ip: ""
+  disable_ipv6: true
+  dnssec_enabled: false
+  cache_size: 4194304
+  cache_ttl_min: 0
+  cache_ttl_max: 0
+  cache_optimistic: false
+  upstream_dns:
+  - 127.0.0.1:5335
+  - tcp://127.0.0.1:5335
+  upstream_dns_file: ""
+  bootstrap_dns:
+  - 9.9.9.10
+  - 149.112.112.10
+  all_servers: false
+  fastest_addr: false
+  fastest_timeout_ms: 1000
+  allowed_clients: []
+  disallowed_clients: []
+  blocked_hosts:
+  - version.bind
+  - id.server
+  - hostname.bind
+  use_private_ptr_resolvers: true
+  local_ptr_upstreams: []
+tls:
+  enabled: false
+filters:
+- enabled: true
+  url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_1.txt
+  name: AdGuard DNS filter
+  id: 1
+- enabled: true
+  url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_2.txt
+  name: AdAway Default Blocklist
+  id: 2
+- enabled: true
+  url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_11.txt
+  name: OISD Blocklist Basic
+  id: 3
