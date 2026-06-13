@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
     network_mode: host
     volumes:
-      - ../configs/unbound:/opt/unbound/etc/unbound:Z
+      - ../configs/unbound:/opt/unbound/etc/unbound
     healthcheck:
       test: ["CMD", "dig", "-p", "5335", "@127.0.0.1", "cloudflare.com"]
       interval: 30s
@@ -23,8 +23,8 @@ services:
     restart: unless-stopped
     network_mode: host
     volumes:
-      - ../configs/adguard/work:/opt/adguardhome/work:Z
-      - ../configs/adguard/AdGuardHome.yaml:/opt/adguardhome/conf/AdGuardHome.yaml:Z
+      - ../configs/adguard/work:/opt/adguardhome/work
+      - ../configs/adguard/AdGuardHome.yaml:/opt/adguardhome/conf/AdGuardHome.yaml
     depends_on:
       - unbound
     healthcheck:

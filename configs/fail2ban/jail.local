@@ -13,8 +13,4 @@ backend = %(sshd_backend)s
 maxretry = 3
 bantime = 86400
 
-[wireguard]
-enabled = true
-port = 51820
-protocol = udp
-filter = sshd
+
